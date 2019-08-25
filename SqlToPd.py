@@ -74,5 +74,6 @@ def io():
         else:
             df = getNewsFromTicker(tablename = TableName, news = ticker)
         print(df)
+
 if __name__ == '__main__':
     io()

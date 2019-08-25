@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="linux" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Dickson" autoUploadExternalChanges="true">
     <serverData>
+      <paths name="Dickson">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/dicksontsang/Noah/Allan/Task4" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="linux">
         <serverdata>
           <mappings>
