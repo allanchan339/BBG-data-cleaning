@@ -21,19 +21,22 @@ def rowandcolumn(dataframe_sh1):
     dataframe_sh1['Date Time'] = pandas.to_datetime(dataframe_sh1['Date Time'])
     dataframe_sh1['Date'] = pandas.to_datetime(dataframe_sh1['Date'])
     dataframe_sh1 = dataframe_sh1.drop(columns = ['A', 'M'])
+    print(list(dataframe_sh1))
     for i in range(4, 8):
         dataframe_sh1 = datacleaning(dataframe_sh1, list(dataframe_sh1)[i])
     for i in range(10, 14):
         dataframe_sh1 = datacleaning(dataframe_sh1, list(dataframe_sh1)[i])
+    dataframe_sh1 = datacleaning(dataframe_sh1, 'Surprise')
 
     return dataframe_sh1
 
 
-def datacleaning(dataframe_sh1,nameofcolumn):
-    dataframe_sh1[nameofcolumn].replace({'\$': '', '[ÂA£¥]': '', '[bmkt]': '', '--': '0', 'NaN':'0'}, regex = True,
-                                       inplace = True) #.map(pandas.eval)
+def datacleaning(dataframe_sh1, nameofcolumn):
+    dataframe_sh1[nameofcolumn].replace({'\$': '', '[ÂA£¥]': '', '[bmkt]': '', '--': '0', 'NaN': '0'}, regex = True,
+                                        inplace = True)  # .map(pandas.eval)
     dataframe_sh1[nameofcolumn] = dataframe_sh1[nameofcolumn].map(pandas.eval)
     return dataframe_sh1
+
 
 if __name__ == '__main__':
     DB_CONNECT_STRING = 'mysql+pymysql://allanchan339:33715882aAB@localhost/data'
@@ -51,9 +54,9 @@ if __name__ == '__main__':
         dataframe, xlsx = AllAboutDB.Excelprocess().readNews(xlsxname)
         print(xlsx.sheet_names)
         dataframe_sh1 = dataframe.get(xlsx.sheet_names[0])
-        print(dataframe_sh1['Surv(M)'])
+        print(dataframe_sh1['Surprise'])
         dataframe_sh1 = rowandcolumn(dataframe_sh1)
 
-        print(dataframe_sh1['Surv(M)'])
+        print(dataframe_sh1['Surprise'])
         pandas.DataFrame.to_sql(dataframe_sh1, 'News', con = engine, if_exists = 'append', index = False)
     engine.dispose()
