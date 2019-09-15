@@ -27,6 +27,7 @@ def rowandcolumn(dataframe_sh1):
     for i in range(10, 14):
         dataframe_sh1 = datacleaning(dataframe_sh1, list(dataframe_sh1)[i])
     dataframe_sh1 = datacleaning(dataframe_sh1, 'Surprise')
+    dataframe_sh1 = datacleaning(dataframe_sh1, 'Std Dev')
     dataframe_sh1['Ticker'] = dataframe_sh1['Ticker'].replace({'Index': ''}, regex = True)
     return dataframe_sh1
 
